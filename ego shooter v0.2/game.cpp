@@ -18,7 +18,8 @@ void Game::Init() {
     // Initialisierung anderer Spielkomponenten hier
 }
 
-
+//old
+/*
 void Game::Update() {
 
     float offsetThisFrame = 10.0f * GetFrameTime();
@@ -40,6 +41,35 @@ void Game::Update() {
         camera.target.x -= offsetThisFrame;
     }
 }
+*/
+
+//new
+void Game::Update() {
+    float offsetThisFrame = 10.0f * GetFrameTime();
+    float moveX = 0.0f;
+    float moveZ = 0.0f;
+
+    // Handle input for both axes
+    if (IsKeyDown(KEY_W)) {
+        moveZ -= offsetThisFrame;
+    }
+    if (IsKeyDown(KEY_S)) {
+        moveZ += offsetThisFrame;
+    }
+    if (IsKeyDown(KEY_A)) {
+        moveX -= offsetThisFrame;
+    }
+    if (IsKeyDown(KEY_D)) {
+        moveX += offsetThisFrame;
+    }
+
+    // Update the camera position and target
+    camera.position.x += moveX;
+    camera.position.z += moveZ;
+    camera.target.x += moveX;
+    camera.target.z += moveZ;
+}
+
 
 void Game::Draw() {
     BeginDrawing();
